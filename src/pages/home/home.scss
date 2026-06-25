@@ -1,0 +1,1245 @@
+// ════════════════════════════════════════════════
+//  CONVITE DE CASAMENTO — Johnny & Paula
+//  Paleta: Verde Sage · Dourado · Marfim
+// ════════════════════════════════════════════════
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
+
+// ─── TOKENS ───────────────────────────────────
+$sage:        #7D8C70;
+$sage-dark:   #3D4A35;
+$sage-mid:    #4E5E44;
+$sage-light:  #A3B396;
+$sage-pale:   #D6DDD1;
+$gold: #ffbd00;
+$gold-light:  #E2C97E;
+$gold-dark:   #A07B28;
+$ivory:       #FDFDF8;
+$ivory-dark:  #F0EDE4;
+$charcoal:    #2C2C2C;
+$gray:        #7A7A7A;
+$white:       #FFFFFF;
+
+// ─── TIPOGRAFIA ───────────────────────────────
+$display: 'Cormorant Garamond', serif;
+$body:    'Jost', sans-serif;
+
+// ─── MIXINS ───────────────────────────────────
+@mixin section-pad {
+  padding: 4rem 2rem;
+  @media (min-width: 768px) { padding: 6rem 4rem; }
+}
+
+// ════════════════════════════════════════════════
+//  BASE
+// ════════════════════════════════════════════════
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: $ivory-dark;
+  font-family: $body;
+  color: $charcoal;
+}
+
+.invitation-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: $ivory;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.18);
+  overflow: hidden;
+
+  @media (min-width: 768px) { max-width: 850px; }
+}
+
+// ════════════════════════════════════════════════
+//  SEÇÃO 1 — ABERTURA COM VÉU ANIMADO
+// ════════════════════════════════════════════════
+
+.veil-scene {
+  position: relative;
+  background: $sage;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+// ─── TEXTURA DE FUNDO ────────────────────────
+.bg-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 30% 40%, rgba($gold, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba($white, 0.04) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+// ─── CANVAS DE PARTÍCULAS ────────────────────
+.particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scroll-indicator{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:opacity .5s;
+
+  z-index:40;
+
+  span{
+    font-size:.62rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba($gold,.75);
+  }
+
+  .arrow{
+    font-size:1.4rem;
+    color:$gold;
+  }
+
+  &.show{
+    opacity:1;
+
+    .arrow{
+      animation:bounceDown .9s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes bounceDown{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(8px);
+  }
+
+}
+
+// ─── VÉU QUE SE LEVANTA ──────────────────────
+.envelope-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  aspect-ratio: 100 / 52;
+
+  background: linear-gradient(
+    to bottom,
+    lighten($sage, 4%),
+    $sage
+  );
+
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+
+  transform-origin: top center;
+  transition: transform 1.4s cubic-bezier(.76,0,.24,1);
+
+  z-index: 20;
+
+  box-shadow:
+    0 8px 15px rgba(0,0,0,.30),
+    0 25px 45px rgba(0,0,0,.25);
+
+  &.opened {
+    transform: translateY(-100%);
+  }
+}
+
+.envelope-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    $sage,
+    darken($sage, 4%)
+  );
+
+  transform-origin: bottom center;
+  transition: transform 1.4s cubic-bezier(.76,0,.24,1);
+
+  z-index: 10;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05);
+
+  &.opened {
+    transform: translateY(100%);
+  }
+}
+
+.envelope-bottom::before{
+  content:'';
+  position:absolute;
+
+  top:0;
+  left:0;
+  right:0;
+
+  height:25px;
+
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.18),
+    transparent
+  );
+}
+
+.envelope-top::after{
+  content:'';
+  position:absolute;
+  inset:0;
+
+  clip-path: polygon(0 0,100% 0,50% 100%);
+
+  box-shadow:
+    inset 0 -2px 0 rgba(255,255,255,.08);
+
+  pointer-events:none;
+}
+
+.envelope-texture{
+  position:absolute;
+  inset:0;
+
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,.02) 0,
+      rgba(255,255,255,.02) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+
+  pointer-events:none;
+}
+
+.veil-overlay {
+  position: absolute;
+  inset: 0;
+  background: $sage-mid;
+  z-index: 10;
+  transform-origin: top center;
+  transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
+
+  &.lifted {
+    transform: translateY(-100%);
+  }
+}
+
+.veil-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba($white, 0.015) 3px,
+      rgba($white, 0.015) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba($white, 0.01) 3px,
+      rgba($white, 0.01) 4px
+    );
+}
+
+// Borda suave embaixo do véu para suavizar a transição
+.veil-bottom-edge {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, $sage-mid, transparent);
+  pointer-events: none;
+  z-index: 11;
+  transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
+
+  &.lifted {
+    transform: translateY(-100vh);
+  }
+}
+
+// ─── CONTEÚDO CENTRAL ─────────────────────────
+.veil-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.6s;
+
+  &.visible { opacity: 1; }
+}
+
+.veil-eyebrow {
+  font-family: $body;
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 2.2rem;
+}
+
+// ─── MONOGRAMA ────────────────────────────────
+.veil-monogram-line {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.veil-dash {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba($gold, 0.5));
+
+  &.right {
+    background: linear-gradient(90deg, rgba($gold, 0.5), transparent);
+  }
+}
+
+.veil-monogram {
+  font-family: $display;
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  color: rgba($gold, 0.6);
+}
+
+// ─── NOMES ────────────────────────────────────
+.veil-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.veil-name {
+  font-family: $display;
+  font-weight: 300;
+  font-size: clamp(3.2rem, 12vw, 4.5rem);
+  color: $ivory;
+  letter-spacing: 6px;
+  line-height: 1.05;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+}
+
+.veil-amp {
+  font-family: $display;
+  font-style: italic;
+  font-size: 2rem;
+  color: $gold;
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+// ─── DIVISOR ──────────────────────────────────
+.veil-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.6rem 0 1.4rem;
+  width: 200px;
+}
+
+.veil-divider-line {
+  flex: 1;
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent, rgba($gold, 0.4), transparent);
+}
+
+.veil-divider-gem {
+  width: 5px;
+  height: 5px;
+  background: $gold;
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+// ─── DATA & LOCAL ─────────────────────────────
+.veil-date {
+  font-family: $display;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: rgba($ivory, 0.65);
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+
+.veil-location {
+  font-family: $body;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba($ivory, 0.35);
+  font-weight: 300;
+}
+
+// ─── BOTÃO DE REVELAÇÃO ───────────────────────
+.veil-btn {
+  position: relative;
+  z-index: 12;
+  margin-top: 3rem;
+  background: none;
+  border: none;
+  color: $ivory;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $body;
+  padding: 0;
+  transition: opacity 0.4s ease;
+
+  &:hover .veil-btn-ring {
+    border-color: $gold;
+  }
+
+  &:hover .veil-btn-arrow {
+    color: $gold;
+  }
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.veil-btn-ring {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba($ivory, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+
+.veil-btn-arrow {
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  animation: float-arrow 2s ease-in-out infinite;
+}
+
+.veil-btn-label {
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba($ivory, 0.45);
+  font-weight: 300;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba($gold, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba($gold, 0.08); }
+}
+
+@keyframes float-arrow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(4px); }
+}
+
+// ════════════════════════════════════════════════
+//  SEÇÕES DE CONTEÚDO
+// ════════════════════════════════════════════════
+
+.invitation-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.visible { opacity: 1; }
+}
+
+.section {
+  @include section-pad;
+  text-align: center;
+  border-top: 1px solid rgba($sage-pale, 0.5);
+
+  &:first-child { border-top: none; }
+}
+
+// ─── REVEAL ANIMATION ─────────────────────────
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── TÍTULOS & TEXTOS ─────────────────────────
+.section-eyebrow {
+  font-family: $body;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: $gray;
+  margin-bottom: 0.8rem;
+
+  &.gold { color: rgba($gold-light, 0.85); }
+}
+
+.section-title {
+  font-family: $display;
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+
+  &.dark  { font-size: 2.2rem; color: $charcoal; }
+  &.white { font-size: 2.2rem; color: $ivory; }
+
+  @media (min-width: 768px) {
+    &.dark, &.white { font-size: 3rem; }
+  }
+}
+
+.gold-ornament {
+  display: block;
+  color: $gold;
+  font-size: 0.5rem;
+  letter-spacing: 6px;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+// ─── SEÇÃO 2 — FOTO ───────────────────────────
+.photo-section {
+  padding-bottom: 3rem;
+}
+
+.photo-frame {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+  max-width: 260px;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) { max-width: 340px; }
+}
+
+.photo-placeholder {
+  aspect-ratio: 3/4;
+  background: $ivory-dark;
+  border: 1px solid $sage-pale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &.landscape {
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
+
+  .photo-label { font-size: 0.75rem; color: $gray; }
+  .photo-hint  { font-size: 0.6rem; color: $sage-light; letter-spacing: 2px; text-transform: uppercase; }
+}
+
+.photo-border-ornament {
+  position: absolute;
+  color: $gold;
+  font-size: 0.55rem;
+  opacity: 0.6;
+
+  &.top-left     { top: -8px;    left: -8px; }
+  &.top-right    { top: -8px;    right: -8px; }
+  &.bottom-left  { bottom: -8px; left: -8px; }
+  &.bottom-right { bottom: -8px; right: -8px; }
+}
+
+.romantic-quote {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: $charcoal;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) { font-size: 1.7rem; }
+}
+
+.quote-sub {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: $gray;
+  max-width: 320px;
+  margin: 0 auto;
+
+  em { color: $sage; }
+
+  @media (min-width: 768px) { font-size: 0.9rem; max-width: 420px; }
+}
+
+// ─── SEÇÃO 3 — MÚSICA ─────────────────────────
+.music-section {
+  background: $ivory-dark;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.music-container {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.music-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $sage;
+  margin-bottom: 0.4rem;
+}
+
+.music-title-song {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: $charcoal;
+  margin-bottom: 1.2rem;
+}
+
+.music-player {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.play-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid $sage;
+  background: none;
+  color: $sage;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  .play-icon { font-size: 0.9rem; margin-left: 2px; }
+
+  &:hover, &.playing {
+    background: $sage;
+    color: $ivory;
+  }
+}
+
+.progress-track {
+  flex: 1;
+  height: 2px;
+  background: $sage-pale;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, $sage, $gold);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.music-time {
+  font-size: 0.7rem;
+  color: $gray;
+  flex-shrink: 0;
+}
+
+// ─── SEÇÃO 4 — COUNTDOWN ──────────────────────
+.countdown-section {
+  background: $sage;
+  background-image:
+    radial-gradient(ellipse at top left, rgba($gold, 0.1), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0,0,0,0.1), transparent 50%);
+  border-top: none;
+  padding-bottom: 3rem;
+}
+
+.countdown-inner { color: $ivory; }
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba($ivory, 0.15);
+  border-bottom: 1px solid rgba($ivory, 0.15);
+
+  @media (min-width: 768px) { gap: 1.5rem; }
+}
+
+.count-block {
+  text-align: center;
+  min-width: 56px;
+
+  @media (min-width: 768px) { min-width: 72px; }
+}
+
+.count-num {
+  display: block;
+  font-family: $display;
+  font-weight: 300;
+  font-size: 2.8rem;
+  color: $ivory;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+
+  @media (min-width: 768px) { font-size: 3.8rem; }
+}
+
+.count-label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba($ivory, 0.65);
+}
+
+.count-sep {
+  font-family: $display;
+  font-size: 2rem;
+  color: rgba($gold, 0.6);
+  position: relative;
+  top: -10px;
+
+  @media (min-width: 768px) { font-size: 3rem; top: -14px; }
+}
+
+// ─── CALENDÁRIO ───────────────────────────────
+.calendar-block {
+  margin-top: 2rem;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) { max-width: 340px; }
+}
+
+.calendar-month {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: rgba($ivory, 0.9);
+  margin-bottom: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.cal-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba($ivory, 0.2);
+  padding-bottom: 0.5rem;
+
+  span {
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba($ivory, 0.5);
+  }
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem 0;
+
+  span {
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba($ivory, 0.75);
+    line-height: 2;
+  }
+
+  .marked {
+    background: $ivory;
+    color: $sage;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 0 auto;
+    box-shadow: 0 0 0 2px rgba($gold, 0.5);
+
+    @media (min-width: 768px) { width: 36px; height: 36px; line-height: 36px; }
+  }
+}
+
+// ─── SEÇÃO 5 — CERIMÔNIA ──────────────────────
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.venue-card {
+  border: 1px solid $sage-pale;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  &::before, &::after {
+    content: '◆';
+    position: absolute;
+    color: $gold;
+    font-size: 0.5rem;
+    opacity: 0.5;
+  }
+  &::before { top: -6px;    left: 50%; transform: translateX(-50%); }
+  &::after  { bottom: -6px; left: 50%; transform: translateX(-50%); }
+}
+
+.venue-time {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: $sage;
+  margin-bottom: 0.5rem;
+}
+
+.venue-name {
+  font-family: $display;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: $charcoal;
+  margin-bottom: 0.3rem;
+}
+
+.venue-address {
+  font-size: 0.75rem;
+  color: $gray;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.btn-outline {
+  background: none;
+  border: 1px solid $sage;
+  color: $sage;
+  padding: 0.6rem 1.8rem;
+  border-radius: 24px;
+  font-family: $body;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: $sage;
+    color: $ivory;
+  }
+}
+
+.ceremony-section {
+  padding-bottom: 0; // <-- adicione isso
+}
+
+.photo-landscape {
+  margin: 2rem -2rem 0;
+
+  @media (min-width: 768px) { margin: 2.5rem -4rem 0; }
+}
+
+// ─── TIMELINE ─────────────────────────────────
+.timeline-block {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid $sage-pale;
+}
+
+.timeline-title {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: $charcoal;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 72px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, $sage-pale, $sage, $sage-pale, transparent);
+  }
+}
+
+.tl-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.6rem;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.tl-time {
+  width: 60px;
+  text-align: right;
+  color: $gray;
+  font-style: italic;
+  font-family: $display;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.tl-line {
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-dot {
+  width: 7px;
+  height: 7px;
+  background: $gold;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 0 3px rgba($gold, 0.2);
+}
+
+.tl-desc {
+  font-family: $body;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: $charcoal;
+  text-align: left;
+}
+
+// ─── SEÇÃO 6 — DRESS CODE ─────────────────────
+.dress-section { background: $ivory-dark; }
+
+.dress-inner { max-width: 360px; margin: 0 auto; }
+
+.dress-type {
+  font-family: $display;
+  font-size: 1.6rem;
+  color: $sage;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.dress-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+
+  .dress-divider { font-size: 0.5rem; color: $gold; }
+}
+
+.dress-advice {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: $gray;
+  margin-bottom: 2rem;
+
+  em { color: $charcoal; font-style: normal; font-weight: 500; }
+
+  @media (min-width: 768px) { font-size: 0.9rem; }
+}
+
+.dress-palette {
+  border: 1px solid $sage-pale;
+  padding: 1.2rem;
+
+  .palette-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $gray;
+    margin-bottom: 0.8rem;
+  }
+}
+
+.palette-swatches {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  @media (min-width: 768px) { width: 40px; height: 40px; }
+}
+
+.palette-hint {
+  font-size: 0.65rem;
+  color: $gray;
+  letter-spacing: 1px;
+}
+
+// ─── SEÇÃO 7 — PRESENTES ──────────────────────
+.gifts-section {
+  background: darken($sage, 12%);
+  background-image: radial-gradient(ellipse at top, rgba($gold, 0.1), transparent 60%);
+  border-top: none;
+}
+
+.gifts-inner { max-width: 360px; margin: 0 auto; }
+
+.gift-icon-large {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.gifts-text {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: rgba($ivory, 0.8);
+  margin-bottom: 2rem;
+}
+
+.qr-area { margin-bottom: 2rem; }
+
+.qr-box {
+  width: 140px;
+  height: 140px;
+  background: $ivory;
+  margin: 0 auto 0.8rem;
+  padding: 10px;
+
+  .qr-mock-inner {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed $sage;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: $sage;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+}
+
+.qr-label {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba($ivory, 0.5);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, $gold-light, $gold, $gold-dark);
+  border: none;
+  color: $charcoal;
+  padding: 0.8rem 2.2rem;
+  border-radius: 4px;
+  font-family: $body;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba($gold-dark, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($gold-dark, 0.4);
+  }
+}
+
+// ─── SEÇÃO 8 — RSVP ───────────────────────────
+.rsvp-section {
+  background: $sage;
+  border-top: none;
+  padding: 0;
+}
+
+.rsvp-inner {
+  padding: 4rem 2rem 3rem;
+  border-bottom: 1px solid rgba($ivory, 0.15);
+
+  @media (min-width: 768px) { padding: 6rem 4rem 4rem; }
+}
+
+.rsvp-envelope-icon {
+  display: block;
+  font-size: 2.5rem;
+  color: rgba($gold, 0.8);
+  margin-bottom: 1rem;
+}
+
+.rsvp-text {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: rgba($ivory, 0.85);
+  margin-bottom: 2rem;
+
+  strong { color: $gold-light; font-weight: 500; }
+}
+
+.btn-white {
+  background: $ivory;
+  border: none;
+  color: darken($sage, 10%);
+  padding: 0.85rem 2.2rem;
+  border-radius: 4px;
+  font-family: $body;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: scale(1.03); }
+}
+
+.info-block {
+  background: $ivory;
+  padding: 3rem 2rem;
+
+  @media (min-width: 768px) { padding: 4rem; }
+}
+
+.info-title {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: $sage;
+  margin-bottom: 1.5rem;
+}
+
+.info-list {
+  list-style: none;
+  text-align: left;
+  max-width: 320px;
+  margin: 0 auto 2rem;
+
+  li {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: $gray;
+    margin-bottom: 1rem;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.info-dot {
+  color: $gold;
+  font-size: 0.45rem;
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+}
+
+.closing-phrase {
+  font-family: $display;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: $sage;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+.closing-names {
+  font-family: $display;
+  font-size: 1rem;
+  color: $gray;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+// ─── RODAPÉ ───────────────────────────────────
+.invitation-footer {
+  background: $charcoal;
+  padding: 2rem;
+  text-align: center;
+
+  .footer-date {
+    font-family: $display;
+    font-style: italic;
+    font-size: 1rem;
+    color: $gold;
+    letter-spacing: 4px;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-ornament {
+    font-size: 0.45rem;
+    color: rgba($gold, 0.4);
+    letter-spacing: 6px;
+  }
+}

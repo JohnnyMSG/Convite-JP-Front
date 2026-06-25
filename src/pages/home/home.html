@@ -1,0 +1,241 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap"
+  rel="stylesheet">
+
+<div class="invitation-wrapper">
+
+  <!-- ═══════════════════════════════════════
+       SEÇÃO 1 — ABERTURA COM VÉU
+  ═══════════════════════════════════════ -->
+  <section class="veil-scene" id="veilScene">
+
+    <!-- Fundo com textura sutil -->
+    <div class="bg-texture"></div>
+
+    <!-- Canvas de partículas douradas -->
+    <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+
+    <!-- VÉU que se levanta -->
+    <div class="envelope-top" id="envelopeTop">
+      <div class="envelope-texture"></div>
+    </div>
+    <div class="envelope-bottom" id="envelopeBottom">
+      <div class="envelope-texture"></div>
+    </div>
+
+    <!-- Conteúdo central -->
+    <div class="veil-content" id="veilContent">
+
+      <p class="veil-eyebrow">Você está convidado(a)</p>
+
+      <div class="veil-monogram-line">
+        <div class="veil-dash"></div>
+        <span class="veil-monogram">J &amp; P</span>
+        <div class="veil-dash right"></div>
+      </div>
+
+      <div class="veil-names">
+        <span class="veil-name">Johnny</span>
+        <span class="veil-amp">&amp;</span>
+        <span class="veil-name">Paula</span>
+      </div>
+
+      <div class="veil-divider">
+        <div class="veil-divider-line"></div>
+        <div class="veil-divider-gem"></div>
+        <div class="veil-divider-line"></div>
+      </div>
+
+      <p class="veil-date">11 · Outubro · 2026</p>
+      <p class="veil-location">Uberlândia &nbsp;·&nbsp; Minas Gerais</p>
+
+    </div>
+
+    <!-- Botão de revelação -->
+    <button class="veil-btn" id="veilBtn" (click)="revealInvite()">
+      <div class="veil-btn-ring">
+        <span class="veil-btn-arrow">▾</span>
+      </div>
+      <span class="veil-btn-label">Abrir Convite</span>
+    </button>
+
+    <div class="scroll-indicator" [class.show]="showScrollIndicator">
+      <span>Continue</span>
+      <div class="arrow">⌄</div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTEÚDO DO CONVITE
+  ═══════════════════════════════════════ -->
+  <div class="invitation-content" id="invitationContent" [style.display]="veilRevealed ? 'block' : 'none'">
+
+    <!-- SEÇÃO 2 — FOTO + FRASE ROMÂNTICA -->
+    <section class="section photo-section reveal">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <img ngSrc="assets/fotoInicio.jpg" alt="fotoInicio" style="max-width:100%; height:auto;" height="4896"
+               width="3264">
+        </div>
+        <div class="photo-border-ornament top-left">◆</div>
+        <div class="photo-border-ornament top-right">◆</div>
+        <div class="photo-border-ornament bottom-left">◆</div>
+        <div class="photo-border-ornament bottom-right">◆</div>
+      </div>
+      <blockquote class="romantic-quote">
+        "Depois de tantas histórias,<br>o nosso melhor capítulo está<br>prestes a ser escrito."
+      </blockquote>
+      <p class="quote-sub">Convidamos você para celebrar o amor, a cumplicidade e o início do nosso <em>para
+        sempre.</em></p>
+    </section>
+
+    <!-- SEÇÃO 3 — PLAYER DE MÚSICA -->
+    <section class="section music-section reveal">
+      <div class="music-container">
+        <p class="music-eyebrow">♪ Nossa Música</p>
+        <p class="music-title-song">Um Amor Puro — Djavan</p>
+        <div class="music-player">
+          <button class="play-btn" id="playBtn" (click)="toggleMusic()">
+            <span class="play-icon">▶</span>
+          </button>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill" [style.width.%]="progressWidth"></div>
+          </div>
+          <span class="music-time">3:25</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4 — COUNTDOWN + CALENDÁRIO -->
+    <section class="section countdown-section reveal">
+      <div class="countdown-inner">
+        <p class="section-eyebrow gold">Com a bênção de Deus e de nossos pais</p>
+        <h2 class="section-title white">A contagem regressiva<br>já começou</h2>
+
+        <div class="countdown-grid">
+          <div class="count-block">
+            <span class="count-num">{{ days }}</span>
+            <span class="count-label">Dias</span>
+          </div>
+          <span class="count-sep">:</span>
+          <div class="count-block">
+            <span class="count-num">{{ hours }}</span>
+            <span class="count-label">Horas</span>
+          </div>
+          <span class="count-sep">:</span>
+          <div class="count-block">
+            <span class="count-num">{{ minutes }}</span>
+            <span class="count-label">Min</span>
+          </div>
+          <span class="count-sep">:</span>
+          <div class="count-block">
+            <span class="count-num">{{ seconds }}</span>
+            <span class="count-label">Seg</span>
+          </div>
+        </div>
+
+        <div class="calendar-block">
+          <p class="calendar-month">Outubro 2026</p>
+          <div class="cal-header">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="cal-grid">
+            <span class="empty"></span><span class="empty"></span><span class="empty"></span><span
+            class="empty"></span>
+            <span>1</span><span>2</span><span>3</span>
+            <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            <span
+              class="marked">11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+            <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+            <span>24</span>
+            <span>25</span>
+            <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5 — CERIMÔNIA & CRONOGRAMA -->
+    <section class="section ceremony-section reveal">
+      <div class="section-header">
+        <span class="gold-ornament">◆ ◆ ◆</span>
+        <h2 class="section-title dark">Cerimônia & Festa</h2>
+        <span class="gold-ornament">◆ ◆ ◆</span>
+      </div>
+
+      <div class="venue-card">
+        <p class="venue-time">às 16h00</p>
+        <p class="venue-name">Portal Gaia</p>
+        <p class="venue-address">Uberlândia — MG</p>
+        <button class="btn-outline" (click)="openMap('cerimonia')">
+          📍 Ver no Mapa
+        </button>
+      </div>
+
+      <div class="photo-landscape">
+        <div class="photo-placeholder landscape">
+          <img ngSrc="assets/fotoLocal.jpg" alt="Foto do Local" style="max-width:100%; height:auto;" height="4160"
+               width="6240">
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6 — DRESS CODE -->
+    <section class="section dress-section reveal">
+      <div class="dress-inner">
+        <h2 class="section-title dark">Dress Code</h2>
+        <p class="dress-type">Esporte Fino</p>
+        <p class="dress-advice">
+          Queremos que você se sinta confortável para celebrar conosco.<br>
+          Sugerimos trajes leves e elegantes.<br>
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 7 — LISTA DE PRESENTES -->
+    <section class="section gifts-section reveal">
+      <div class="gifts-inner">
+        <div class="dress-icons">
+          <span>🏡</span>
+          <div class="dress-divider">✦</div>
+          <span>🤍</span>
+        </div>
+        <h2 class="section-title white">Lista de Presentes</h2>
+        <p class="gifts-text">
+          Sua presença é o nosso maior presente!<br>
+          Se desejar nos presentear, criamos uma lista virtual.
+        </p>
+        <div class="qr-area">
+          <div class="qr-box">
+            <div class="qr-mock-inner">QR CODE PIX</div>
+          </div>
+          <p class="qr-label">Escaneie ou clique abaixo</p>
+        </div>
+        <button class="btn-white" (click)="acessarLista()">Acessar Lista Virtual →</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 8 — RSVP -->
+    <section class="section rsvp-section reveal">
+      <div class="rsvp-inner">
+        <span class="rsvp-envelope-icon">✉</span>
+        <h2 class="section-title white">Confirme sua Presença</h2>
+        <p class="rsvp-text">Por favor, confirme até <strong>08 de Setembro de 2026</strong> para que possamos
+          organizar tudo com muito carinho.</p>
+
+        <button class="btn-white" (click)="confirmarPresenca()">
+          Confirmar
+        </button>
+      </div>
+    </section>
+
+    <footer class="invitation-footer">
+      <p class="footer-date">11 · 10 · 2026</p>
+      <div class="footer-ornament">◆ ◆ ◆</div>
+    </footer>
+
+  </div>
+
+</div>
