@@ -23,6 +23,9 @@ $white:       #FFFFFF;
 // ─── TIPOGRAFIA ───────────────────────────────
 $display: 'Cormorant Garamond', serif;
 $body:    'Jost', sans-serif;
+$text-display: 'Prata', serif;            /* Fonte de texto */
+$names-cursive: 'Pinyon Script', cursive;  /* Nossos nomes */
+$date-time: 'EB Garamond', serif;      /* Data e hora */
 
 // ─── MIXINS ───────────────────────────────────
 @mixin section-pad {
@@ -328,7 +331,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 3rem;
 }
 
 .veil-dash {
@@ -342,7 +345,7 @@ body {
 }
 
 .veil-monogram {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 0.9rem;
   letter-spacing: 3px;
@@ -358,9 +361,9 @@ body {
 }
 
 .veil-name {
-  font-family: $display;
+  font-family: $names-cursive;
   font-weight: 300;
-  font-size: clamp(3.2rem, 12vw, 4.5rem);
+  font-size: clamp(3.2rem, 12vw, 7rem);
   color: $ivory;
   letter-spacing: 6px;
   line-height: 1.05;
@@ -368,7 +371,7 @@ body {
 }
 
 .veil-amp {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 2rem;
   color: $white;
@@ -387,7 +390,7 @@ body {
 
 .veil-divider-line {
   flex: 1;
-  height: 0.5px;
+  height: 1px;
   background: linear-gradient(90deg, transparent, $white, transparent);
 }
 
@@ -401,7 +404,7 @@ body {
 
 // ─── DATA & LOCAL ─────────────────────────────
 .veil-date {
-  font-family: $display;
+  font-family: $date-time;
   font-size: 0.85rem;
   letter-spacing: 4px;
   color: $ivory;
@@ -529,7 +532,7 @@ body {
 }
 
 .section-title {
-  font-family: $display;
+  font-family: $text-display;
   font-weight: 300;
   line-height: 1.15;
   margin-bottom: 1.5rem;
@@ -598,7 +601,7 @@ body {
 }
 
 .romantic-quote {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 1.3rem;
   line-height: 1.6;
@@ -641,7 +644,7 @@ body {
 }
 
 .music-title-song {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 1.4rem;
   color: $charcoal;
@@ -731,7 +734,7 @@ body {
 
 .count-num {
   display: block;
-  font-family: $display;
+  font-family: $date-time;
   font-weight: 300;
   font-size: 2.8rem;
   color: $ivory;
@@ -750,7 +753,7 @@ body {
 }
 
 .count-sep {
-  font-family: $display;
+  font-family: $date-time;
   font-size: 2rem;
   color: rgba($gold, 0.6);
   position: relative;
@@ -770,7 +773,7 @@ body {
 }
 
 .calendar-month {
-  font-family: $display;
+  font-family: $date-time;
   font-style: italic;
   font-size: 1.2rem;
   color: rgba($ivory, 0.9);
@@ -795,6 +798,7 @@ body {
 }
 
 .cal-grid {
+  font-family: $date-time;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.5rem 0;
@@ -844,7 +848,7 @@ body {
 }
 
 .venue-time {
-  font-family: $display;
+  font-family: $date-time;
   font-style: italic;
   font-size: 1.8rem;
   color: $sage;
@@ -852,7 +856,7 @@ body {
 }
 
 .venue-name {
-  font-family: $display;
+  font-family: $text-display;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -905,7 +909,7 @@ body {
 }
 
 .timeline-title {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 1.6rem;
   color: $charcoal;
@@ -942,7 +946,7 @@ body {
   text-align: right;
   color: $gray;
   font-style: italic;
-  font-family: $display;
+  font-family: $text-display;
   font-size: 0.95rem;
   flex-shrink: 0;
 }
@@ -980,7 +984,7 @@ body {
 .dress-inner { max-width: 360px; margin: 0 auto; }
 
 .dress-type {
-  font-family: $display;
+  font-family: $text-display;
   font-size: 1.6rem;
   color: $sage;
   margin-bottom: 1.5rem;
@@ -1206,7 +1210,7 @@ body {
 }
 
 .closing-phrase {
-  font-family: $display;
+  font-family: $text-display;
   font-style: italic;
   font-size: 1.6rem;
   color: $sage;
@@ -1215,7 +1219,7 @@ body {
 }
 
 .closing-names {
-  font-family: $display;
+  font-family: $text-display;
   font-size: 1rem;
   color: $gray;
   letter-spacing: 3px;
@@ -1229,7 +1233,7 @@ body {
   text-align: center;
 
   .footer-date {
-    font-family: $display;
+    font-family: $text-display;
     font-style: italic;
     font-size: 1rem;
     color: $gold;
