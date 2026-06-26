@@ -1247,3 +1247,77 @@ body {
     letter-spacing: 6px;
   }
 }
+
+// ════════════════════════════════════════════════
+//  SEÇÃO 9 — GALERIA DE FOTOS ASSIMÉTRICA
+// ════════════════════════════════════════════════
+
+.gallery-section {
+  background: $ivory;
+  padding-bottom: 4rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    // No desktop, deixa apenas 1rem (16px) de margem lateral (antes era 4rem!)
+    padding: 6rem 1rem;
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // No mobile: grade limpa de 2 colunas
+  gap: 8px;
+  padding: 0;
+
+  // Ativa o design premium assimétrico em tablets e computadores
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(3, 1fr); // Transiciona para 3 colunas base
+    grid-auto-rows: 200px; // Define a altura perfeita para o encaixe matemático
+    gap: 12px;
+    padding: 0;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  background: $ivory-dark;
+  border: 1px solid rgba($sage-pale, 0.7);
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  aspect-ratio: 1 / 1; // Força proporção uniforme e elegante no ambiente mobile
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Garante que a foto preencha o espaço sem distorcer as pessoas
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  // Efeito sofisticado de aproximação ao passar o mouse
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($sage-dark, 0.12);
+
+    img {
+      transform: scale(1.04);
+    }
+  }
+
+  // Regras de reajuste estrutural para telas médias/grandes
+  @media (min-width: 600px) {
+    aspect-ratio: auto; // Remove a restrição do mobile para aceitar o cálculo do grid
+
+    &.item-v {
+      grid-row: span 2; // Ocupa duas linhas verticalmente
+      height: 100%;
+    }
+
+    &.item-h {
+      grid-column: span 2; // Expande horizontalmente por duas colunas
+    }
+  }
+}

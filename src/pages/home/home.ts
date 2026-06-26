@@ -267,7 +267,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
     document.getElementById('envelopeTop')?.classList.add('opened');
     document.getElementById('envelopeBottom')?.classList.add('opened');
     if (this.veilRevealed) return;
-    this.toggleMusic();
+    // this.toggleMusic();
 
     document.body.style.overflow = 'auto';
     this.veilRevealed = true;
