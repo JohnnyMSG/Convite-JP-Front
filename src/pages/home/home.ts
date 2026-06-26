@@ -289,7 +289,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
     content?.classList.add('visible');
 
     // 4. Burst de partículas douradas no momento da revelação
-    setTimeout(() => this.burstParticles(), 600);
+    // setTimeout(() => this.burstParticles(), 600);
 
     // 5. Revela o restante do convite e rola suavemente
     setTimeout(() => {
