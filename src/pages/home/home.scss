@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
 
 // ─── TOKENS ───────────────────────────────────
-$sage:        #7D8C70;
+$sage:        #9cb283;
 $sage-dark:   #3D4A35;
 $sage-mid:    #4E5E44;
 $sage-light:  #A3B396;
@@ -111,12 +111,12 @@ body {
     font-size:.62rem;
     letter-spacing:3px;
     text-transform:uppercase;
-    color:rgba($gold,.75);
+    color:rgba($white,.75);
   }
 
   .arrow{
     font-size:1.4rem;
-    color:$gold;
+    color:$white;
   }
 
   &.show{
@@ -319,7 +319,7 @@ body {
   font-weight: 300;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: $gold;
+  color: $white;
   margin-bottom: 2.2rem;
 }
 
@@ -334,10 +334,10 @@ body {
 .veil-dash {
   width: 40px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba($gold, 0.5));
+  background: linear-gradient(90deg, transparent, $white);
 
   &.right {
-    background: linear-gradient(90deg, rgba($gold, 0.5), transparent);
+    background: linear-gradient(90deg, $white, transparent);
   }
 }
 
@@ -346,7 +346,7 @@ body {
   font-style: italic;
   font-size: 0.9rem;
   letter-spacing: 3px;
-  color: rgba($gold, 0.6);
+  color: rgba($white, 0.6);
 }
 
 // ─── NOMES ────────────────────────────────────
@@ -371,7 +371,7 @@ body {
   font-family: $display;
   font-style: italic;
   font-size: 2rem;
-  color: $gold;
+  color: $white;
   line-height: 1.2;
   opacity: 0.85;
 }
@@ -388,13 +388,13 @@ body {
 .veil-divider-line {
   flex: 1;
   height: 0.5px;
-  background: linear-gradient(90deg, transparent, rgba($gold, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, $white, transparent);
 }
 
 .veil-divider-gem {
   width: 5px;
   height: 5px;
-  background: $gold;
+  background: $white;
   transform: rotate(45deg);
   opacity: 0.6;
 }
@@ -404,7 +404,7 @@ body {
   font-family: $display;
   font-size: 0.85rem;
   letter-spacing: 4px;
-  color: rgba($ivory, 0.65);
+  color: $ivory;
   font-weight: 300;
   margin-bottom: 0.3rem;
 }
@@ -414,7 +414,7 @@ body {
   font-size: 0.55rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba($ivory, 0.35);
+  color: $ivory;
   font-weight: 300;
 }
 
@@ -522,7 +522,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: $gray;
+  color: $white;
   margin-bottom: 0.8rem;
 
   &.gold { color: rgba($gold-light, 0.85); }

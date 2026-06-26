@@ -205,7 +205,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
 
     ctx.save();
     ctx.globalAlpha = p.opacity;
-    ctx.fillStyle   = '#C9A84C';
+    ctx.fillStyle   = '#ffbc00';
 
     if (p.shape === 'diamond') {
       ctx.translate(p.x, p.y);
@@ -267,7 +267,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
     document.getElementById('envelopeTop')?.classList.add('opened');
     document.getElementById('envelopeBottom')?.classList.add('opened');
     if (this.veilRevealed) return;
-    this.toggleMusic();
+    // this.toggleMusic();
 
     document.body.style.overflow = 'auto';
     this.veilRevealed = true;
