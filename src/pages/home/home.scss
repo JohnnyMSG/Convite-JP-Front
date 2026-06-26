@@ -522,7 +522,7 @@ body {
 // ─── TÍTULOS & TEXTOS ─────────────────────────
 .section-eyebrow {
   font-family: $body;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: $white;
@@ -541,7 +541,7 @@ body {
   &.white { font-size: 2.2rem; color: $ivory; }
 
   @media (min-width: 768px) {
-    &.dark, &.white { font-size: 3rem; }
+    &.dark, &.white { font-size: 2.5rem; }
   }
 }
 
@@ -615,12 +615,12 @@ body {
   font-size: 0.8rem;
   line-height: 1.7;
   color: $gray;
-  max-width: 320px;
+  max-width: 500px;
   margin: 0 auto;
 
   em { color: $sage; }
 
-  @media (min-width: 768px) { font-size: 0.9rem; max-width: 420px; }
+  @media (min-width: 768px) { font-size: 0.9rem; max-width: 600px; }
 }
 
 // ─── SEÇÃO 3 — MÚSICA ─────────────────────────
@@ -981,11 +981,11 @@ body {
 // ─── SEÇÃO 6 — DRESS CODE ─────────────────────
 .dress-section { background: $ivory-dark; }
 
-.dress-inner { max-width: 360px; margin: 0 auto; }
+.dress-inner { max-width: 400px; margin: 0 auto; }
 
 .dress-type {
   font-family: $text-display;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: $sage;
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
@@ -1138,7 +1138,7 @@ body {
 .rsvp-envelope-icon {
   display: block;
   font-size: 2.5rem;
-  color: rgba($gold, 0.8);
+  color: $white;
   margin-bottom: 1rem;
 }
 
@@ -1148,7 +1148,7 @@ body {
   color: rgba($ivory, 0.85);
   margin-bottom: 2rem;
 
-  strong { color: $gold-light; font-weight: 500; }
+  strong { color: $sage-mid; font-weight: 500; }
 }
 
 .btn-white {
@@ -1236,14 +1236,14 @@ body {
     font-family: $text-display;
     font-style: italic;
     font-size: 1rem;
-    color: $gold;
+    color: $white;
     letter-spacing: 4px;
     margin-bottom: 0.8rem;
   }
 
   .footer-ornament {
     font-size: 0.45rem;
-    color: rgba($gold, 0.4);
+    color: rgba($white, 0.4);
     letter-spacing: 6px;
   }
 }
