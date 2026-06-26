@@ -603,12 +603,12 @@ body {
 .romantic-quote {
   font-family: $text-display;
   font-style: italic;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: $charcoal;
   margin-bottom: 1rem;
 
-  @media (min-width: 768px) { font-size: 1.7rem; }
+  @media (min-width: 768px) { font-size: 1.2rem; }
 }
 
 .quote-sub {
