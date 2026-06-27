@@ -57,6 +57,7 @@ body {
 // ════════════════════════════════════════════════
 
 .veil-scene {
+  color-scheme: light;
   position: relative;
   background: $sage;
   min-height: 100svh;
@@ -702,6 +703,7 @@ body {
 
 // ─── SEÇÃO 4 — COUNTDOWN (VERSÃO CORRIGIDA) ──────────────────────
 .countdown-section {
+  color-scheme: light;
   background: $sage;
   background-image:
     radial-gradient(ellipse at top left, rgba($sage, 0.1), transparent 50%),
