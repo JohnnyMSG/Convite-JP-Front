@@ -43,7 +43,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
   isPlaying     = false;
   progressWidth = 0;
   private musicInterval: any;
-  audio = new Audio('assets/audio/umamorpuro.mp3');
+  audio = new Audio('assets/audios/um.amor.puro.violao.mp3');
 
   // ─── SCROLL REVEAL ───────────────────────────
   private observer: IntersectionObserver | null = null;

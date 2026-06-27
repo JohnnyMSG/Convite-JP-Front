@@ -700,17 +700,31 @@ body {
   flex-shrink: 0;
 }
 
-// ─── SEÇÃO 4 — COUNTDOWN ──────────────────────
+// ─── SEÇÃO 4 — COUNTDOWN (VERSÃO CORRIGIDA) ──────────────────────
 .countdown-section {
   background: $sage;
   background-image:
     radial-gradient(ellipse at top left, rgba($gold, 0.1), transparent 50%),
     radial-gradient(ellipse at bottom right, rgba(0,0,0,0.1), transparent 50%);
   border-top: none;
-  padding-bottom: 3rem;
+
+  // 💡 MATOU A CHARADA: Força exatamente o mesmo espaço em cima e embaixo no mobile
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    // 💡 E também equilibra perfeitamente no desktop (valores idênticos)
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
 }
 
-.countdown-inner { color: $ivory; }
+.countdown-inner {
+  color: $ivory;
+  max-width: 450px;   // 💡 Cria uma caixa de contenção perfeita para alinhar com o calendário
+  margin: 0 auto;     // 💡 Centraliza a estrutura inteira horizontalmente na tela
+  padding: 0 1rem;
+}
 
 .countdown-grid {
   display: flex;
@@ -722,12 +736,12 @@ body {
   border-top: 1px solid rgba($ivory, 0.15);
   border-bottom: 1px solid rgba($ivory, 0.15);
 
-  @media (min-width: 768px) { gap: 1.5rem; }
+  @media (min-width: 768px) { gap: 1.2rem; } // Ajustado para não esticar demais no desktop
 }
 
 .count-block {
   text-align: center;
-  min-width: 56px;
+  min-width: 58px;
 
   @media (min-width: 768px) { min-width: 72px; }
 }
@@ -741,7 +755,7 @@ body {
   line-height: 1;
   margin-bottom: 0.3rem;
 
-  @media (min-width: 768px) { font-size: 3.8rem; }
+  @media (min-width: 768px) { font-size: 3.5rem; }
 }
 
 .count-label {
@@ -756,10 +770,18 @@ body {
   font-family: $date-time;
   font-size: 2rem;
   color: rgba($gold, 0.6);
-  position: relative;
-  top: -10px;
 
-  @media (min-width: 768px) { font-size: 3rem; top: -14px; }
+  // 💡 Nova centralização limpa: elimina o position:relative que quebrava o alinhamento
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transform: translateY(-6px); // Sobe o caractere sem empurrar o container para baixo
+
+  @media (min-width: 768px) {
+    font-size: 2.8rem;
+    transform: translateY(-8px);
+  }
 }
 
 // ─── CALENDÁRIO ───────────────────────────────
