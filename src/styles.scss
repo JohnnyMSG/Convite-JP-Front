@@ -1,92 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
-$sage:        #9cb283;
-$sage-dark:   #3D4A35;
-$sage-pale:   #D6DDD1;
-$ivory:       #FDFDF8;
-$ivory-dark:  #F0EDE4;
-$charcoal:    #2C2C2C;
-$white:       #FFFFFF;
-
 body {
   color-scheme: light;
   background-image: linear-gradient(rgba(253, 253, 248, 0.6), rgba(253, 253, 248, 0.6)),
-  url('/assets/Gemini_Generated_Image_1k2s81k2s81k2s81.png') !important;
+  url('/assets/Gemini_Generated_Image_1k2s81k2s81k2s81.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed !important;
   margin: 0;
   padding: 0;
-}
-
-// ════════════════════════════════════════════════
-//  BLINDAGEM SUPREMA CONTRA MODO ESCURO FORÇADO
-// ════════════════════════════════════════════════
-
-// 1. Força os blocos claros do convite a usarem gradientes falsos (celular não consegue inverter)
-.invitation-wrapper,
-.section,
-.music-section,
-.ceremony-section,
-.dress-section,
-.gallery-section,
-.info-block {
-  background: linear-gradient($ivory, $ivory) !important;
-  color: $charcoal !important;
-}
-
-// 2. Blindagem para as seções em Verde Sage (Véu, Contador e RSVP)
-.veil-scene,
-.countdown-section,
-.rsvp-section {
-  background-image:
-    radial-gradient(ellipse at top left, rgba($white, 0.1), transparent 50%),
-    linear-gradient($sage, $sage) !important;
-
-  color: $ivory !important;
-
-  // Garante que todos os textos internos dessas seções continuem claros
-  h2, p, span, div, blockquote, .count-num, .count-label, .veil-name, .veil-eyebrow, .count-sep {
-    color: $ivory !important;
-  }
-}
-
-// 3. Blindagem para a lista de presentes (Verde mais escuro)
-.gifts-section {
-  $dark-sage: darken($sage, 12%);
-  background-image:
-    radial-gradient(ellipse at top, rgba($white, 0.1), transparent 60%),
-    linear-gradient($dark-sage, $dark-sage) !important;
-
-  h2, p, span, div { color: $ivory !important; }
-}
-
-// 4. Redundância caso o celular aplique o "prefers-color-scheme: dark" forçado no texto
-@media (prefers-color-scheme: dark) {
-  .romantic-quote,
-  .quote-sub,
-  .venue-name,
-  .venue-address,
-  .dress-type,
-  .dress-advice,
-  .timeline-title,
-  .tl-desc,
-  .gallery-section .section-title {
-    color: $charcoal !important;
-  }
-
-  .venue-card {
-    border-color: $sage-pale !important;
-    &::before, &::after { color: $sage !important; }
-  }
-
-  .cal-grid span:not(.marked) {
-    color: rgba($ivory, 0.75) !important;
-  }
-
-  .invitation-footer {
-    background: linear-gradient($charcoal, $charcoal) !important;
-    .footer-date, .footer-ornament { color: $white !important; }
-  }
 }
