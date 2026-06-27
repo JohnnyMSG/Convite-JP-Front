@@ -11,9 +11,6 @@ $sage-dark:   #3D4A35;
 $sage-mid:    #4E5E44;
 $sage-light:  #A3B396;
 $sage-pale:   #D6DDD1;
-$gold: #ffbd00;
-$gold-light:  #E2C97E;
-$gold-dark:   #A07B28;
 $ivory:       #FDFDF8;
 $ivory-dark:  #F0EDE4;
 $charcoal:    #2C2C2C;
@@ -76,7 +73,7 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(ellipse at 30% 40%, rgba($gold, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 30% 40%, rgba($sage, 0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 75% 70%, rgba($white, 0.04) 0%, transparent 45%);
   pointer-events: none;
   z-index: 0;
@@ -439,11 +436,11 @@ body {
   transition: opacity 0.4s ease;
 
   &:hover .veil-btn-ring {
-    border-color: $gold;
+    border-color: $white;
   }
 
   &:hover .veil-btn-arrow {
-    color: $gold;
+    color: $white;
   }
 
   &.hidden {
@@ -479,8 +476,8 @@ body {
 }
 
 @keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba($gold, 0); }
-  50%       { box-shadow: 0 0 0 8px rgba($gold, 0.08); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba($white, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba($white, 0.2); }
 }
 
 @keyframes float-arrow {
@@ -527,8 +524,6 @@ body {
   text-transform: uppercase;
   color: $white;
   margin-bottom: 0.8rem;
-
-  &.gold { color: rgba($gold-light, 0.85); }
 }
 
 .section-title {
@@ -547,7 +542,7 @@ body {
 
 .gold-ornament {
   display: block;
-  color: $gold;
+  color: $sage;
   font-size: 0.5rem;
   letter-spacing: 6px;
   margin-bottom: 1rem;
@@ -689,7 +684,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, $sage, $gold);
+  background: linear-gradient(90deg, $sage, $white);
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -704,7 +699,7 @@ body {
 .countdown-section {
   background: $sage;
   background-image:
-    radial-gradient(ellipse at top left, rgba($gold, 0.1), transparent 50%),
+    radial-gradient(ellipse at top left, rgba($sage, 0.1), transparent 50%),
     radial-gradient(ellipse at bottom right, rgba(0,0,0,0.1), transparent 50%);
   border-top: none;
 
@@ -769,7 +764,7 @@ body {
 .count-sep {
   font-family: $date-time;
   font-size: 2rem;
-  color: rgba($gold, 0.6);
+  color: rgba($white, 0.6);
 
   // 💡 Nova centralização limpa: elimina o position:relative que quebrava o alinhamento
   display: inline-flex;
@@ -841,7 +836,7 @@ body {
     line-height: 28px;
     font-weight: 600;
     margin: 0 auto;
-    box-shadow: 0 0 0 2px rgba($gold, 0.5);
+    box-shadow: 0 0 0 2px rgba($sage-dark, 0.5);
 
     @media (min-width: 768px) { width: 36px; height: 36px; line-height: 36px; }
   }
@@ -861,7 +856,7 @@ body {
   &::before, &::after {
     content: '◆';
     position: absolute;
-    color: $gold;
+    color: $sage;
     font-size: 0.5rem;
     opacity: 0.5;
   }
@@ -923,83 +918,6 @@ body {
   @media (min-width: 768px) { margin: 2.5rem -4rem 0; }
 }
 
-// ─── TIMELINE ─────────────────────────────────
-.timeline-block {
-  margin-top: 2.5rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid $sage-pale;
-}
-
-.timeline-title {
-  font-family: $text-display;
-  font-style: italic;
-  font-size: 1.6rem;
-  color: $charcoal;
-  font-weight: 400;
-  margin-bottom: 2rem;
-}
-
-.timeline {
-  position: relative;
-  max-width: 320px;
-  margin: 0 auto;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 72px;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, $sage-pale, $sage, $sage-pale, transparent);
-  }
-}
-
-.tl-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.6rem;
-
-  &:last-child { margin-bottom: 0; }
-}
-
-.tl-time {
-  width: 60px;
-  text-align: right;
-  color: $gray;
-  font-style: italic;
-  font-family: $text-display;
-  font-size: 0.95rem;
-  flex-shrink: 0;
-}
-
-.tl-line {
-  width: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.tl-dot {
-  width: 7px;
-  height: 7px;
-  background: $gold;
-  border-radius: 50%;
-  display: block;
-  box-shadow: 0 0 0 3px rgba($gold, 0.2);
-}
-
-.tl-desc {
-  font-family: $body;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  color: $charcoal;
-  text-align: left;
-}
-
 // ─── SEÇÃO 6 — DRESS CODE ─────────────────────
 .dress-section { background: $ivory-dark; }
 
@@ -1011,17 +929,6 @@ body {
   color: $sage;
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
-}
-
-.dress-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-
-  .dress-divider { font-size: 0.5rem; color: $gold; }
 }
 
 .dress-advice {
@@ -1073,7 +980,7 @@ body {
 // ─── SEÇÃO 7 — PRESENTES ──────────────────────
 .gifts-section {
   background: darken($sage, 12%);
-  background-image: radial-gradient(ellipse at top, rgba($gold, 0.1), transparent 60%);
+  background-image: radial-gradient(ellipse at top, rgba($white, 0.1), transparent 60%);
   border-top: none;
 }
 
@@ -1120,27 +1027,6 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: rgba($ivory, 0.5);
-}
-
-.btn-gold {
-  background: linear-gradient(135deg, $gold-light, $gold, $gold-dark);
-  border: none;
-  color: $charcoal;
-  padding: 0.8rem 2.2rem;
-  border-radius: 4px;
-  font-family: $body;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 16px rgba($gold-dark, 0.3);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba($gold-dark, 0.4);
-  }
 }
 
 // ─── SEÇÃO 8 — RSVP ───────────────────────────
@@ -1222,13 +1108,6 @@ body {
 
     &:last-child { margin-bottom: 0; }
   }
-}
-
-.info-dot {
-  color: $gold;
-  font-size: 0.45rem;
-  flex-shrink: 0;
-  margin-top: 0.55rem;
 }
 
 .closing-phrase {
