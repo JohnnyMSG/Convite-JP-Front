@@ -307,6 +307,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
 
   // ─── MÚSICA ──────────────────────────────────
   toggleMusic(): void {
+    this.audio.volume = 0.4;
     const playBtn =
       document.getElementById('playBtn');
 
