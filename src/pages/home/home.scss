@@ -36,6 +36,7 @@ $date-time: 'EB Garamond', serif;      /* Data e hora */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
+  color-scheme: light;
   background: $ivory-dark;
   font-family: $body;
   color: $charcoal;
