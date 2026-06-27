@@ -666,11 +666,16 @@ body {
   flex-shrink: 0;
   transition: all 0.2s ease;
 
-  .play-icon { font-size: 0.9rem; margin-left: 2px; }
+  .play-icon { font-size: 0.9rem; margin-left: 2px; line-height: 1;}
 
   &:hover, &.playing {
     background: $sage;
     color: $ivory;
+  }
+
+  &.playing .play-icon {
+    margin-left: 0; /* Remove o empurrãozinho que o '▶' precisava */
+    letter-spacing: 1px; /* Dá um espacinho extra entre os dois riscos se usar '||' */
   }
 }
 

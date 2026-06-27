@@ -323,7 +323,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
       playBtn?.classList.add('playing');
 
       if (icon) {
-        icon.textContent = '⏸';
+        icon.textContent = '||';
       }
 
     } else {
