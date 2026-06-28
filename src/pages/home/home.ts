@@ -385,14 +385,10 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
   }
 
   confirmarPresenca(): void {
-    const numero   = '5534999999999'; // ← substituir pelo número real
-    const mensagem = encodeURIComponent(
-      'Olá! Confirmo minha presença no casamento de Johnny & Paula em 24/10/2026. 🎊'
-    );
-    window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+    window.open(`https://noivos.casar.com/paulaejohnny/?preview_as_guest=1&_ref_=https://painel.casar.com/presentes/editar-lista#/rsvp`, '_blank');
   }
 
   acessarLista(): void {
-    window.open('https://linkdalista.com.br', '_blank'); // ← substituir pela URL real
+    window.open('https://noivos.casar.com/paulaejohnny/?preview_as_guest=1&_ref_=https://painel.casar.com/presentes/editar-lista#/presentes', '_blank'); // ← substituir pela URL real
   }
 }
