@@ -6,34 +6,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
 
 // ─── TOKENS ───────────────────────────────────
-$sage:        #9cb283;
-$sage-dark:   #3D4A35;
-$sage-mid:    #4E5E44;
-$sage-light:  #A3B396;
-$sage-pale:   #D6DDD1;
-$ivory:       #FDFDF8;
-$ivory-dark:  #F0EDE4;
-$charcoal:    #2C2C2C;
-$gray:        #7A7A7A;
-$white:       #FFFFFF;
+$sage: #9cb283;
+$sage-dark: #3D4A35;
+$sage-mid: #4E5E44;
+$sage-light: #A3B396;
+$sage-pale: #D6DDD1;
+$ivory: #FDFDF8;
+$ivory-dark: #F0EDE4;
+$charcoal: #2C2C2C;
+$gray: #7A7A7A;
+$white: #FFFFFF;
 
 // ─── TIPOGRAFIA ───────────────────────────────
 $display: 'Cormorant Garamond', serif;
-$body:    'Jost', sans-serif;
-$text-display: 'Prata', serif;            /* Fonte de texto */
-$names-cursive: 'Pinyon Script', cursive;  /* Nossos nomes */
-$date-time: 'EB Garamond', serif;      /* Data e hora */
+$body: 'Jost', sans-serif;
+$text-display: 'Prata', serif; /* Fonte de texto */
+$names-cursive: 'Pinyon Script', cursive; /* Nossos nomes */
+$date-time: 'EB Garamond', serif; /* Data e hora */
 
 // ─── MIXINS ───────────────────────────────────
 @mixin section-pad {
   padding: 4rem 2rem;
-  @media (min-width: 768px) { padding: 6rem 4rem; }
+  @media (min-width: 768px) {
+    padding: 6rem 4rem;
+  }
 }
 
 // ════════════════════════════════════════════════
 //  BASE
 // ════════════════════════════════════════════════
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   color-scheme: light !important;
@@ -47,10 +53,12 @@ body {
   max-width: 800px;
   margin: 0 auto;
   background: $ivory;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.18);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.18);
   overflow: hidden;
 
-  @media (min-width: 768px) { max-width: 850px; }
+  @media (min-width: 768px) {
+    max-width: 850px;
+  }
 }
 
 // ════════════════════════════════════════════════
@@ -74,16 +82,17 @@ body {
   overflow: hidden;
 
   // Aplica o bloqueio a tudo que estiver dentro da seção
-  * { color-scheme: only light !important; }
+  * {
+    color-scheme: only light !important;
+  }
 }
 
 // ─── TEXTURA DE FUNDO ────────────────────────
 .bg-texture {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(ellipse at 30% 40%, rgba($sage, 0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 70%, rgba($white, 0.04) 0%, transparent 45%);
+  background-image: radial-gradient(ellipse at 30% 40%, rgba($sage, 0.07) 0%, transparent 55%),
+  radial-gradient(ellipse at 75% 70%, rgba($white, 0.04) 0%, transparent 45%);
   pointer-events: none;
   z-index: 0;
 }
@@ -98,53 +107,53 @@ body {
   z-index: 1;
 }
 
-.scroll-indicator{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
 
-  opacity:0;
-  pointer-events:none;
+  opacity: 0;
+  pointer-events: none;
 
-  transition:opacity .5s;
+  transition: opacity .5s;
 
-  z-index:40;
+  z-index: 40;
 
-  span{
-    font-size:.62rem;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:rgba($white,.75);
+  span {
+    font-size: .62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba($white, .75);
   }
 
-  .arrow{
-    font-size:1.4rem;
-    color:$white;
+  .arrow {
+    font-size: 1.4rem;
+    color: $white;
   }
 
-  &.show{
-    opacity:1;
+  &.show {
+    opacity: 1;
 
-    .arrow{
-      animation:bounceDown .9s ease-in-out infinite;
+    .arrow {
+      animation: bounceDown .9s ease-in-out infinite;
     }
   }
 }
 
-@keyframes bounceDown{
+@keyframes bounceDown {
 
-  0%,100%{
-    transform:translateY(0);
+  0%, 100% {
+    transform: translateY(0);
   }
 
-  50%{
-    transform:translateY(8px);
+  50% {
+    transform: translateY(8px);
   }
 
 }
@@ -166,9 +175,9 @@ body {
 
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
-  transition: transform 1.4s cubic-bezier(.76,0,.24,1);
+  transition: transform 1.4s cubic-bezier(.76, 0, .24, 1);
   z-index: 20;
-  box-shadow: 0 8px 15px rgba(0,0,0,.30), 0 25px 45px rgba(0,0,0,.25);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, .30), 0 25px 45px rgba(0, 0, 0, .25);
 
   &.opened {
     transform: translateY(-100%);
@@ -189,60 +198,58 @@ body {
   );
 
   transform-origin: bottom center;
-  transition: transform 1.4s cubic-bezier(.76,0,.24,1);
+  transition: transform 1.4s cubic-bezier(.76, 0, .24, 1);
   z-index: 10;
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
 
   &.opened {
     transform: translateY(100%);
   }
 }
 
-.envelope-bottom::before{
-  content:'';
-  position:absolute;
+.envelope-bottom::before {
+  content: '';
+  position: absolute;
 
-  top:0;
-  left:0;
-  right:0;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  height:25px;
+  height: 25px;
 
-  background:linear-gradient(
+  background: linear-gradient(
     to bottom,
-    rgba(0,0,0,.18),
+    rgba(0, 0, 0, .18),
     transparent
   );
 }
 
-.envelope-top::after{
-  content:'';
-  position:absolute;
-  inset:0;
+.envelope-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 
-  clip-path: polygon(0 0,100% 0,50% 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
 
-  box-shadow:
-    inset 0 -2px 0 rgba(255,255,255,.08);
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, .08);
 
-  pointer-events:none;
+  pointer-events: none;
 }
 
-.envelope-texture{
-  position:absolute;
-  inset:0;
+.envelope-texture {
+  position: absolute;
+  inset: 0;
 
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,.02) 0,
-      rgba(255,255,255,.02) 2px,
-      transparent 2px,
-      transparent 8px
-    );
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, .02) 0,
+    rgba(255, 255, 255, .02) 2px,
+    transparent 2px,
+    transparent 8px
+  );
 
-  pointer-events:none;
+  pointer-events: none;
 }
 
 .veil-overlay {
@@ -261,21 +268,20 @@ body {
 .veil-texture {
   position: absolute;
   inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba($white, 0.015) 3px,
-      rgba($white, 0.015) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 3px,
-      rgba($white, 0.01) 3px,
-      rgba($white, 0.01) 4px
-    );
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba($white, 0.015) 3px,
+    rgba($white, 0.015) 4px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba($white, 0.01) 3px,
+    rgba($white, 0.01) 4px
+  );
 }
 
 // Borda suave embaixo do véu para suavizar a transição
@@ -307,7 +313,9 @@ body {
   opacity: 0;
   transition: opacity 0.8s ease 0.6s;
 
-  &.visible { opacity: 1; }
+  &.visible {
+    opacity: 1;
+  }
 }
 
 .veil-eyebrow {
@@ -361,7 +369,7 @@ body {
   color: $ivory;
   letter-spacing: 6px;
   line-height: 1.05;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
 }
 
 .veil-amp {
@@ -473,13 +481,21 @@ body {
 }
 
 @keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba($white, 0); }
-  50%       { box-shadow: 0 0 0 8px rgba($white, 0.2); }
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba($white, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba($white, 0.2);
+  }
 }
 
 @keyframes float-arrow {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(4px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
 }
 
 // ════════════════════════════════════════════════
@@ -490,7 +506,9 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease;
 
-  &.visible { opacity: 1; }
+  &.visible {
+    opacity: 1;
+  }
 }
 
 .section {
@@ -498,7 +516,9 @@ body {
   text-align: center;
   border-top: 1px solid rgba($sage-pale, 0.5);
 
-  &:first-child { border-top: none; }
+  &:first-child {
+    border-top: none;
+  }
 }
 
 // ─── REVEAL ANIMATION ─────────────────────────
@@ -529,11 +549,20 @@ body {
   line-height: 1.15;
   margin-bottom: 1.5rem;
 
-  &.dark  { font-size: 2.2rem; color: $charcoal; }
-  &.white { font-size: 2.2rem; color: $ivory; }
+  &.dark {
+    font-size: 2.2rem;
+    color: $charcoal;
+  }
+
+  &.white {
+    font-size: 2.2rem;
+    color: $ivory;
+  }
 
   @media (min-width: 768px) {
-    &.dark, &.white { font-size: 2.5rem; }
+    &.dark, &.white {
+      font-size: 2.5rem;
+    }
   }
 }
 
@@ -549,6 +578,11 @@ body {
 // ─── SEÇÃO 2 — FOTO ───────────────────────────
 .photo-section {
   padding-bottom: 3rem;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .photo-frame {
@@ -556,9 +590,11 @@ body {
   display: inline-block;
   width: 75%;
   max-width: 260px;
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
 
-  @media (min-width: 768px) { max-width: 340px; }
+  @media (min-width: 768px) {
+    max-width: 340px;
+  }
 }
 
 .photo-placeholder {
@@ -576,8 +612,17 @@ body {
     width: 100%;
   }
 
-  .photo-label { font-size: 0.75rem; color: $gray; }
-  .photo-hint  { font-size: 0.6rem; color: $sage-light; letter-spacing: 2px; text-transform: uppercase; }
+  .photo-label {
+    font-size: 0.75rem;
+    color: $gray;
+  }
+
+  .photo-hint {
+    font-size: 0.6rem;
+    color: $sage-light;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
 }
 
 .photo-border-ornament {
@@ -586,10 +631,25 @@ body {
   font-size: 0.55rem;
   opacity: 0.6;
 
-  &.top-left     { top: -8px;    left: -8px; }
-  &.top-right    { top: -8px;    right: -8px; }
-  &.bottom-left  { bottom: -8px; left: -8px; }
-  &.bottom-right { bottom: -8px; right: -8px; }
+  &.top-left {
+    top: -8px;
+    left: -8px;
+  }
+
+  &.top-right {
+    top: -8px;
+    right: -8px;
+  }
+
+  &.bottom-left {
+    bottom: -8px;
+    left: -8px;
+  }
+
+  &.bottom-right {
+    bottom: -8px;
+    right: -8px;
+  }
 }
 
 .romantic-quote {
@@ -600,19 +660,49 @@ body {
   color: $charcoal;
   margin-bottom: 1rem;
 
-  @media (min-width: 768px) { font-size: 1.2rem; }
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
 }
 
 .quote-sub {
   font-size: 0.8rem;
   line-height: 1.7;
   color: $gray;
-  max-width: 500px;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 768px;
+  padding-bottom: 20px;
 
-  em { color: $sage; }
+  em {
+    color: $sage;
+  }
 
-  @media (min-width: 768px) { font-size: 0.9rem; max-width: 600px; }
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    max-width: 600px;
+  }
+}
+
+.quote-versiculo {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: $gray;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 768px;
+  padding-bottom: 50px;
+
+  em {
+    color: $sage;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+    max-width: 600px;
+  }
 }
 
 // ─── SEÇÃO 3 — MÚSICA ─────────────────────────
@@ -663,7 +753,11 @@ body {
   flex-shrink: 0;
   transition: all 0.2s ease;
 
-  .play-icon { font-size: 0.9rem; margin-left: 2px; line-height: 1;}
+  .play-icon {
+    font-size: 0.9rem;
+    margin-left: 2px;
+    line-height: 1;
+  }
 
   &:hover, &.playing {
     background: $sage;
@@ -701,9 +795,8 @@ body {
 .countdown-section {
   color-scheme: light;
   background: $sage;
-  background-image:
-    radial-gradient(ellipse at top left, rgba($sage, 0.1), transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(0,0,0,0.1), transparent 50%);
+  background-image: radial-gradient(ellipse at top left, rgba($sage, 0.1), transparent 50%),
+  radial-gradient(ellipse at bottom right, rgba(0, 0, 0, 0.1), transparent 50%);
   border-top: none;
 
   // 💡 MATOU A CHARADA: Força exatamente o mesmo espaço em cima e embaixo no mobile
@@ -719,8 +812,8 @@ body {
 
 .countdown-inner {
   color: $ivory;
-  max-width: 450px;   // 💡 Cria uma caixa de contenção perfeita para alinhar com o calendário
-  margin: 0 auto;     // 💡 Centraliza a estrutura inteira horizontalmente na tela
+  max-width: 450px; // 💡 Cria uma caixa de contenção perfeita para alinhar com o calendário
+  margin: 0 auto; // 💡 Centraliza a estrutura inteira horizontalmente na tela
   padding: 0 1rem;
 }
 
@@ -734,14 +827,19 @@ body {
   border-top: 1px solid rgba($ivory, 0.15);
   border-bottom: 1px solid rgba($ivory, 0.15);
 
-  @media (min-width: 768px) { gap: 1.2rem; } // Ajustado para não esticar demais no desktop
+  @media (min-width: 768px) {
+    gap: 1.2rem;
+  }
+  // Ajustado para não esticar demais no desktop
 }
 
 .count-block {
   text-align: center;
   min-width: 58px;
 
-  @media (min-width: 768px) { min-width: 72px; }
+  @media (min-width: 768px) {
+    min-width: 72px;
+  }
 }
 
 .count-num {
@@ -753,7 +851,9 @@ body {
   line-height: 1;
   margin-bottom: 0.3rem;
 
-  @media (min-width: 768px) { font-size: 3.5rem; }
+  @media (min-width: 768px) {
+    font-size: 3.5rem;
+  }
 }
 
 .count-label {
@@ -789,7 +889,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 
-  @media (min-width: 768px) { max-width: 340px; }
+  @media (min-width: 768px) {
+    max-width: 340px;
+  }
 }
 
 .calendar-month {
@@ -841,7 +943,11 @@ body {
     margin: 0 auto;
     box-shadow: 0 0 0 2px rgba($sage-dark, 0.5);
 
-    @media (min-width: 768px) { width: 36px; height: 36px; line-height: 36px; }
+    @media (min-width: 768px) {
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
   }
 }
 
@@ -863,8 +969,18 @@ body {
     font-size: 0.5rem;
     opacity: 0.5;
   }
-  &::before { top: -6px;    left: 50%; transform: translateX(-50%); }
-  &::after  { bottom: -6px; left: 50%; transform: translateX(-50%); }
+
+  &::before {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .venue-time {
@@ -912,19 +1028,30 @@ body {
 }
 
 .ceremony-section {
+  padding-top: 2rem;
   padding-bottom: 0; // <-- adicione isso
+
+  @media (min-width: 768px) {
+    padding-top: 3rem;
+  }
 }
 
 .photo-landscape {
   margin: 2rem -2rem 0;
 
-  @media (min-width: 768px) { margin: 2.5rem -4rem 0; }
+  @media (min-width: 768px) {
+    margin: 2.5rem -4rem 0;
+  }
 }
 
 // ─── SEÇÃO 6 — DRESS CODE ─────────────────────
-.dress-section { background: $ivory-dark; }
+.dress-section {
+  background: $ivory-dark;
+}
 
-.dress-inner { max-width: 400px; margin: 0 auto; }
+.dress-inner {
+  margin: 0 auto;
+}
 
 .dress-type {
   font-family: $text-display;
@@ -935,14 +1062,20 @@ body {
 }
 
 .dress-advice {
-  font-size: 0.82rem;
+  font-size: 1.2rem;
   line-height: 1.9;
   color: $gray;
   margin-bottom: 2rem;
 
-  em { color: $charcoal; font-style: normal; font-weight: 500; }
+  em {
+    color: $charcoal;
+    font-style: normal;
+    font-weight: 500;
+  }
 
-  @media (min-width: 768px) { font-size: 0.9rem; }
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
 }
 
 .dress-palette {
@@ -969,9 +1102,12 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
-  @media (min-width: 768px) { width: 40px; height: 40px; }
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .palette-hint {
@@ -987,7 +1123,10 @@ body {
   border-top: none;
 }
 
-.gifts-inner { max-width: 360px; margin: 0 auto; }
+.gifts-inner {
+  max-width: 360px;
+  margin: 0 auto;
+}
 
 .gift-icon-large {
   display: block;
@@ -996,13 +1135,15 @@ body {
 }
 
 .gifts-text {
-  font-size: 0.82rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba($ivory, 0.8);
   margin-bottom: 2rem;
 }
 
-.qr-area { margin-bottom: 2rem; }
+.qr-area {
+  margin-bottom: 2rem;
+}
 
 .qr-box {
   width: 140px;
@@ -1043,7 +1184,9 @@ body {
   padding: 4rem 2rem 3rem;
   border-bottom: 1px solid rgba($ivory, 0.15);
 
-  @media (min-width: 768px) { padding: 6rem 4rem 4rem; }
+  @media (min-width: 768px) {
+    padding: 6rem 4rem 4rem;
+  }
 }
 
 .rsvp-envelope-icon {
@@ -1054,12 +1197,15 @@ body {
 }
 
 .rsvp-text {
-  font-size: 0.82rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba($ivory, 0.85);
   margin-bottom: 2rem;
 
-  strong { color: $sage-mid; font-weight: 500; }
+  strong {
+    color: $sage-mid;
+    font-weight: 500;
+  }
 }
 
 .btn-white {
@@ -1076,14 +1222,18 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease;
 
-  &:hover { transform: scale(1.03); }
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .info-block {
   background: $ivory;
   padding: 3rem 2rem;
 
-  @media (min-width: 768px) { padding: 4rem; }
+  @media (min-width: 768px) {
+    padding: 4rem;
+  }
 }
 
 .info-title {
@@ -1109,7 +1259,9 @@ body {
     color: $gray;
     margin-bottom: 1rem;
 
-    &:last-child { margin-bottom: 0; }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -1200,7 +1352,10 @@ body {
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba($sage-dark, 0.12);
-    img { transform: scale(1.04); }
+
+    img {
+      transform: scale(1.04);
+    }
   }
 
   /* 🔥 MÁGICA DO MOBILE: Imagem como relative força o aspect-ratio a funcionar de primeira */
