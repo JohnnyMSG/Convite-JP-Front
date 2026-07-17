@@ -672,7 +672,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-width: 768px;
   padding-bottom: 20px;
 
   em {
@@ -692,7 +691,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-width: 768px;
   padding-bottom: 50px;
 
   em {
@@ -1062,7 +1060,7 @@ body {
 }
 
 .dress-advice {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: $gray;
   margin-bottom: 2rem;
