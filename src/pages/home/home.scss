@@ -32,12 +32,44 @@ $date-time: 'EB Garamond', serif; /* Data e hora */
   }
 }
 
-// 🔥 Impede que o Samsung Internet / Chrome "modo escuro forçado" escureçam
-// cores de fundo sólidas: um gradiente da cor para ela mesma é tratado como
-// imagem e fica de fora da heurística de auto-dark (mesmo truque do .veil-scene).
+// 🔥 Impede que o Samsung Internet / Chrome "modo escuro forçado" recolora
+// nossas cores: esse filtro reprocessa background-color E linear-gradient(),
+// só background-image: url(...) (uma imagem de verdade) escapa da heurística.
+// Por isso geramos um SVG 1x1 embutido como data-URI em vez de usar a cor direto.
+@function hex6($color) {
+  @return str-slice(ie-hex-str($color), 4);
+}
+
+@function svg-fill-url($color) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23#{hex6($color)}'/%3E%3C/svg%3E");
+}
+
+@function svg-vgradient-url($color-top, $color-bottom) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23#{hex6($color-top)}'/%3E%3Cstop offset='1' stop-color='%23#{hex6($color-bottom)}'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E");
+}
+
+@function svg-vfade-url($color) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23#{hex6($color)}'/%3E%3Cstop offset='1' stop-color='%23#{hex6($color)}' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E");
+}
+
 @mixin solid-bg($color) {
   background-color: $color;
-  background-image: linear-gradient($color, $color);
+  background-image: svg-fill-url($color);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+@mixin gradient-bg-v($color-top, $color-bottom) {
+  background-color: $color-bottom;
+  background-image: svg-vgradient-url($color-top, $color-bottom);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+@mixin fade-bg-v($color) {
+  background-image: svg-vfade-url($color);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 // ════════════════════════════════════════════════
@@ -175,11 +207,7 @@ body {
   width: 100%;
   aspect-ratio: 100 / 52;
 
-  background: linear-gradient(
-    to bottom,
-    lighten($sage, 4%),
-    $sage
-  );
+  @include gradient-bg-v(lighten($sage, 4%), $sage);
 
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
@@ -199,11 +227,7 @@ body {
   bottom: 0;
   height: 100%;
 
-  background: linear-gradient(
-    to bottom,
-    $sage,
-    darken($sage, 4%)
-  );
+  @include gradient-bg-v($sage, darken($sage, 4%));
 
   transform-origin: bottom center;
   transition: transform 1.4s cubic-bezier(.76, 0, .24, 1);
@@ -299,7 +323,7 @@ body {
   left: 0;
   right: 0;
   height: 60px;
-  background: linear-gradient(to bottom, $sage-mid, transparent);
+  @include fade-bg-v($sage-mid);
   pointer-events: none;
   z-index: 11;
   transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
@@ -544,7 +568,7 @@ body {
 // ─── TÍTULOS & TEXTOS ─────────────────────────
 .section-eyebrow {
   font-family: $body;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: $white;
@@ -803,7 +827,9 @@ body {
   background-color: $sage;
   background-image: radial-gradient(ellipse at top left, rgba($sage, 0.1), transparent 50%),
   radial-gradient(ellipse at bottom right, rgba(0, 0, 0, 0.1), transparent 50%),
-  linear-gradient($sage, $sage);
+  svg-fill-url($sage);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-top: none;
 
   // 💡 MATOU A CHARADA: Força exatamente o mesmo espaço em cima e embaixo no mobile
@@ -1128,7 +1154,9 @@ body {
   $gifts-bg: darken($sage, 12%);
   background-color: $gifts-bg;
   background-image: radial-gradient(ellipse at top, rgba($white, 0.1), transparent 60%),
-  linear-gradient($gifts-bg, $gifts-bg);
+  svg-fill-url($gifts-bg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-top: none;
 }
 
